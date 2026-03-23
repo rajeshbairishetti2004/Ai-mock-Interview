@@ -1,19 +1,68 @@
-import { UserButton } from "@clerk/nextjs";
 import React from "react";
 import AddNewInterview from "./_components/AddNewInterview";
 import InterviewList from "./_components/InterviewList";
 
 const Dashboard = () => {
   return (
-    <div className="p-10" >
-      <h2 className="font-bold text-2xl" >Dashboard</h2>
-      <h2 className="text-gray-500" >Create and start your AI Mockup Interview</h2>
+    <div className="min-h-screen w-full bg-gradient-to-r from-[#06122b] via-[#0f2b57] to-[#5b21b6] text-white px-16 py-10">
 
-      <div className="grid grid-cols-1 md:grid-cols-3 my-5" >
-        <AddNewInterview/>
+      {/* HEADER */}
+      <div className="mb-12">
+        <h1 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+          AI Interview Dashboard
+        </h1>
+
+        <p className="text-gray-300 mt-3 text-lg">
+          Create and start your AI Mock Interview
+        </p>
       </div>
 
-      <InterviewList/>
+
+      {/* CREATE INTERVIEW SECTION */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
+
+        <div className="
+        rounded-3xl
+        border border-purple-500/40
+        bg-gradient-to-br from-[#3b0764]/70 via-[#4c1d95]/70 to-[#1e3a8a]/70
+        backdrop-blur-xl
+        p-8
+        shadow-[0_0_60px_rgba(168,85,247,0.4)]
+        hover:scale-105
+        hover:shadow-[0_0_80px_rgba(168,85,247,0.6)]
+        transition-all
+        duration-300
+        ">
+
+          <AddNewInterview/>
+
+        </div>
+
+      </div>
+
+
+      {/* PREVIOUS INTERVIEWS */}
+      <div>
+
+        <h2 className="text-3xl font-semibold text-cyan-300 mb-6">
+          Previous Mock Interviews
+        </h2>
+
+        <div className="
+        rounded-2xl
+        border border-white/10
+        bg-white/10
+        backdrop-blur-lg
+        p-8
+        shadow-[0_0_40px_rgba(0,0,0,0.4)]
+        ">
+
+          <InterviewList/>
+
+        </div>
+
+      </div>
+
     </div>
   );
 };
