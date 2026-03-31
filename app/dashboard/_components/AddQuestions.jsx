@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { LoaderCircle } from "lucide-react";
-import { chatSession } from "@/utils/GeminiAIModel";
+import { ai } from "@/utils/GeminiAIModel";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "@/utils/db";
 import { useUser } from "@clerk/nextjs";
@@ -61,9 +61,11 @@ const AddQuestions = () => {
     console.log("InputPrompt:", InputPrompt);
 
     try {
-      const result = await chatSession.sendMessage(InputPrompt);
-      const MockQuestionJsonResp = result.response
-        .text()
+      const result = await ai.models.generateContent({
+        model: "gemini-2.5-pro",
+        contents: InputPrompt,
+      });
+      const MockQuestionJsonResp = result.text
         .replace("```json", "")
         .replace("```", "")
         .trim();
