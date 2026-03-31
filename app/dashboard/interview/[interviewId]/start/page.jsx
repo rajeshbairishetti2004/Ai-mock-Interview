@@ -10,7 +10,10 @@ const StartInterview = async ({ params }) => {
     .where(eq(MockInterview.mockId, params.interviewId));
 
   const interviewData = result[0];
-  const mockInterviewQuestion = JSON.parse(interviewData?.jsonMockResp || "[]");
+  let mockInterviewQuestion = JSON.parse(interviewData?.jsonMockResp || "[]");
+  if (!Array.isArray(mockInterviewQuestion)) {
+    mockInterviewQuestion = mockInterviewQuestion.questions || [];
+  }
   console.log("Questions:", mockInterviewQuestion);
 
   return (

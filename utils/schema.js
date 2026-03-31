@@ -1,4 +1,4 @@
-import { serial, text, varchar, pgTable } from "drizzle-orm/pg-core";
+import { serial, text, varchar, pgTable, integer } from "drizzle-orm/pg-core";
 
 /* ---------------- MOCK INTERVIEW TABLE ---------------- */
 
@@ -11,6 +11,9 @@ export const MockInterview = pgTable("mock_interview", {
   createdBy: varchar("createdBy").notNull(),
   createdAt: varchar("createdAt"),
   mockId: varchar("mockId").notNull(),
+  resumeText: text("resumeText"),
+  resumeAnalysis: text("resumeAnalysis"),
+  persona: varchar("persona").default("Standard"),
 });
 
 /* ---------------- QUESTION TABLE ---------------- */
@@ -50,4 +53,16 @@ export const Newsletter = pgTable("newsletter", {
   newEmail: varchar("newEmail"),
   newMessage: text("newMessage"),
   createdAt: varchar("createdAt"),
+});
+
+/* ---------------- USER STATS (GAMIFICATION) TABLE ---------------- */
+
+export const UserStats = pgTable("user_stats", {
+  id: serial("id").primaryKey(),
+  userEmail: varchar("userEmail").notNull(),
+  totalInterviews: integer("totalInterviews").default(0),
+  currentStreak: integer("currentStreak").default(0),
+  longestStreak: integer("longestStreak").default(0),
+  totalPoints: integer("totalPoints").default(0),
+  lastInterviewDate: varchar("lastInterviewDate"),
 });

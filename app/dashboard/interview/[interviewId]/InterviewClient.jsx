@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useContext } from "react";
-import { Lightbulb, WebcamIcon } from "lucide-react";
+import { Lightbulb, WebcamIcon, BarChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Webcam from "react-webcam";
 import Link from "next/link";
@@ -52,9 +52,17 @@ const InterviewClient = ({ interviewData }) => {
         </div>
       </div>
 
-      <div className="flex justify-end mt-5">
+      <div className="flex flex-col sm:flex-row justify-end mt-5 gap-4">
+        {interviewData?.resumeText && (
+          <Link href={`/dashboard/interview/${interviewData?.mockId}/resume-analysis`}>
+             <Button className="w-full sm:w-auto bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white shadow-lg flex gap-2 shadow-purple-500/30 border border-purple-400/50">
+              <BarChart size={18} />
+              Analyze Resume (Skill Gaps)
+            </Button>
+          </Link>
+        )}
         <Link href={`/dashboard/interview/${interviewData?.mockId}/start`}>
-          <Button>Start Interview</Button>
+          <Button className="w-full sm:w-auto">Start Interview</Button>
         </Link>
       </div>
     </div>

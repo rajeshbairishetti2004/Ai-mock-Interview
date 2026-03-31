@@ -1,10 +1,10 @@
 import React from "react";
 import AddNewInterview from "./_components/AddNewInterview";
 import InterviewList from "./_components/InterviewList";
-
+import GamificationStats from "./_components/GamificationStats";
 const Dashboard = () => {
   return (
-    <div className="min-h-screen w-full bg-gradient-to-r from-[#06122b] via-[#0f2b57] to-[#5b21b6] text-white px-16 py-10">
+    <div className="w-full text-white">
 
       {/* HEADER */}
       <div className="mb-12">
@@ -17,6 +17,8 @@ const Dashboard = () => {
         </p>
       </div>
 
+      {/* GAMIFICATION STATS */}
+      <GamificationStats />
 
       {/* CREATE INTERVIEW SECTION */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">

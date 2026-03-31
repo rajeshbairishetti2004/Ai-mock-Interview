@@ -19,6 +19,7 @@ export async function POST(req) {
 
     const question = body?.question;
     const userAnswer = body?.userAnswer;
+    const resumeText = body?.resumeText;
 
     // ✅ VALIDATION
     if (!question || !userAnswer) {
@@ -30,7 +31,7 @@ export async function POST(req) {
 
     // ✅ PROMPT
     const prompt = `
-You are an AI interviewer.
+You are an expert AI interviewer evaluating a candidate's response.
 
 Question:
 ${question}
@@ -38,16 +39,28 @@ ${question}
 User Answer:
 ${userAnswer}
 
+${resumeText ? `Candidate Resume Context:\n${resumeText}\n\nPlease evaluate if the user's answer aligns well with the experience they claimed in their resume.` : ""}
+
+EVALUATION INSTRUCTIONS:
+1. Determine if the question is "Behavioral" or "Technical".
+2. If it is Behavioral (e.g., "Tell me about a time...", "How did you handle..."), you MUST evaluate their answer using the S.T.A.R. methodology (Situation, Task, Action, Result).
+   - Check if they provided a clear Situation/Task.
+   - Check if they explained their specific Action.
+   - Check if they shared the final Result/Impact.
+   - In your feedback, explicitly call out which parts of S.T.A.R. they missed or did well.
+3. If it is Technical, evaluate for correctness, efficiency, and clarity.
+4. Provide a rating from 0 to 10 based on the quality of the answer.
+
 STRICT RULES:
 - Respond ONLY in valid JSON
-- Do NOT add explanation
-- Do NOT use markdown
+- Do NOT add explanation outside the JSON format
+- Do NOT use markdown code blocks like \`\`\`json
 
 FORMAT:
 {
-  "correctAnswer": "short ideal answer",
-  "feedback": "constructive feedback",
-  "rating": number (0 to 10)
+  "correctAnswer": "An ideal, concise example answer (using STAR if behavioral).",
+  "feedback": "Detailed, constructive feedback on what was good and what was missing (e.g., 'You forgot to mention the Result').",
+  "rating": <number between 0 and 10>
 }
 `;
 

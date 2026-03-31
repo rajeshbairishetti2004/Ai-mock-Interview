@@ -4,7 +4,8 @@ import { db } from "@/utils/db";
 import { UserAnswer } from "@/utils/schema";
 import { eq } from "drizzle-orm";
 import React, { useEffect, useState, useMemo } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Share2 } from "lucide-react";
+import { toast } from "sonner";
 
 import {
   Collapsible,
@@ -123,9 +124,21 @@ const Feedback = ({ params }) => {
         </>
       )}
 
-      <div className="mt-10">
+      <div className="mt-10 flex gap-4">
         <Button onClick={() => router.replace("/dashboard")}>
           Go Home
+        </Button>
+        <Button 
+          variant="outline"
+          className="border-blue-500 text-blue-600 hover:bg-blue-50"
+          onClick={() => {
+            const shareUrl = `${window.location.origin}/share/${params.interviewId}`;
+            navigator.clipboard.writeText(shareUrl);
+            toast("Link copied to clipboard! Share it with mentors anonymously.");
+          }}
+        >
+          <Share2 className="w-4 h-4 mr-2"/>
+          Share Interview
         </Button>
       </div>
     </div>
