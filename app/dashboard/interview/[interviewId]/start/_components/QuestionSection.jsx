@@ -31,6 +31,13 @@ const QuestionSection = ({ mockInterviewQuestion, activeQuestionIndex }) => {
           ))}
         </div>
 
+        {/* Phase/Round Badge (For Campaign Mode) */}
+        {mockInterviewQuestion[activeQuestionIndex]?.round && (
+          <div className="inline-block px-4 py-1.5 mt-4 w-fit text-xs md:text-sm font-bold text-yellow-900 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full shadow-md border border-yellow-300 tracking-wide uppercase">
+            🚀 {mockInterviewQuestion[activeQuestionIndex].round}
+          </div>
+        )}
+
         {/* Main Question */}
         <h2 className="my-5 text-md md:text-lg text-black font-semibold">
           {mockInterviewQuestion[activeQuestionIndex]?.question}

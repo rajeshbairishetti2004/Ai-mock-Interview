@@ -1,7 +1,11 @@
 import React from "react";
 import AddNewInterview from "./_components/AddNewInterview";
+import AddInterviewLoop from "./_components/AddInterviewLoop";
+import AddArenaDuel from "./_components/AddArenaDuel";
 import InterviewList from "./_components/InterviewList";
+import AdvancedAnalytics from "./_components/AdvancedAnalytics";
 import GamificationStats from "./_components/GamificationStats";
+
 const Dashboard = () => {
   return (
     <div className="w-full text-white">
@@ -20,6 +24,9 @@ const Dashboard = () => {
       {/* GAMIFICATION STATS */}
       <GamificationStats />
 
+      {/* ADVANCED ANALYTICS */}
+      <AdvancedAnalytics />
+
       {/* CREATE INTERVIEW SECTION */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
 
@@ -35,10 +42,14 @@ const Dashboard = () => {
         transition-all
         duration-300
         ">
-
           <AddNewInterview/>
-
         </div>
+
+        {/* CAMPAIGN LOOP CARD */}
+        <AddInterviewLoop />
+
+        {/* E-SPORTS ARENA CARD */}
+        <AddArenaDuel />
 
       </div>
 
