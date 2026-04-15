@@ -15,7 +15,8 @@ const isPublicRoute = createRouteMatcher([
   '/terms'
 ]);
 
-export default clerkMiddleware((auth, req) => {
+export default clerkMiddleware((auth, req) => 
+  {
   if (isProtectedRoute(req)) {
     auth().protect();
   }
